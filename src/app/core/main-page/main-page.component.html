@@ -1,0 +1,60 @@
+<div class="mb-5">
+
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/b76bfd666e4debb9dc3ea77eade6b3fe11188fee_1722176814.jpg?x-oss-process=image/quality,q_95/format,webp"
+                    class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/1db61b3c777fdf8c3c3f05bb75340db871ba4d35_1722245337.jpg?x-oss-process=image/quality,q_95/format,webp"
+                    class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="https://dkstatics-public.digikala.com/digikala-adservice-banners/8878cc02e2fc387319cda5b4fa1610cb0842fb4c_1722242016.jpg?x-oss-process=image/quality,q_95/format,webp"
+                    class="d-block w-100">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="py-10 items-center justify-center">
+        <div class="w-screen flex justify-center px-20 space-x-20">
+            <img width="60" class=" mx-3 md:mx-10 cursor-pointer " height="60"
+                src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
+            <img width="60" class=" mx-3 md:mx-10 cursor-pointer" height="60"
+                src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
+            <img width="60" class=" mx-3 md:mx-10 cursor-pointer" height="60"
+                src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
+            <img width="60" class=" mx-3 md:mx-10 cursor-pointer" height="60"
+                src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
+
+        </div>
+    </div>
+    <div class="grid grid-cols-4">
+        <div dir="rtl" class=" col-span-3 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2  ">
+            <app-product  class="col-span-1" *ngFor="let product of productList" [productTitle]="product.name"
+                [productPrice]="product.Price" [productImageUrl]="product.imageUrl" (click)="redirectToProductDetail(product.id)"/>
+        </div>
+        <div class="col-span-1 border">
+            a
+        </div>
+    </div>
+
+</div>
