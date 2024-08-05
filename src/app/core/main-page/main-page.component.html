@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="grid grid-cols-4">
-        <div dir="rtl" class=" col-span-3 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2  ">
+        <div *ngIf="!Loading" dir="rtl" class=" col-span-3 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  ">
             <app-product  class="col-span-1" *ngFor="let product of productList" [productTitle]="product.name"
                 [productPrice]="product.Price" [productImageUrl]="product.imageUrl" (click)="redirectToProductDetail(product.id)"/>
         </div>

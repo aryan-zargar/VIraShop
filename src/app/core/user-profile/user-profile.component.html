@@ -1,0 +1,91 @@
+<div class="container">
+    <div class=" grid grid-cols-1 md:grid md:grid-cols-6 mt-3" dir="rtl">
+        <app-sidebar class="col-span-1" />
+        <section class="bg-white border rounded-xl m-1 col-span-1 md:col-span-5">
+
+            <div class="flex justify-between px-5 mt-3">
+                <p class="text-yellow-600">با تایید هویت می‌توانید‌ امنیت حساب کاربری‌تان را افزایش دهید و از امکانات
+                    دیگر نیز استفاده کنید</p>
+                <a class="text-sky-400 cursor-pointer" c>تایید هویت</a>
+            </div>
+            <hr class="mt-2">
+            <div class="py-4 px-4 mx-auto max-w-2xl lg:py-16">
+
+                <!-- <p class="mb-4 text-xl font-bold text-gray-900 text-4xl">اطلاعات حساب کاربری<p> -->
+                <p class="text-3xl">اطلاعات حساب کاربری</p>
+
+
+                <form action="#">
+                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                        <div class="sm:col-span-1  ">
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">نام</label>
+                            <input [defaultValue]="'علی اصغر'" type="text" name="name" id="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                        </div>
+                        <div class="w-full">
+                            <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 ">نام
+                                خانوادگی</label>
+                            <input [defaultValue]="'افغان'" type="text" name="familyName" id="familyName"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                        </div>
+                        <div class="w-full">
+                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 ">کدملی</label>
+                            <input [defaultValue]="'ندارد (تابعیت ایران نیست)'" name="nationalCode" id="nationalCode"
+                                class="bg-gray-50 select-none  border select-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                        </div>
+
+                        <div>
+                            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">شماره تلفن
+                                همراه</label>
+                            <input dir="ltr" [defaultValue]="'09931278593'" type="text" name="phone" id="phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                        </div>
+                        <div>
+                            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">ایمیل</label>
+                            <input [defaultValue]="'aliAfghan@mail.afg'" type="email" name="email" id="email"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                        </div>
+                        <div>
+                            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">جنسیت</label>
+                            <select name="item-weight" id="gender"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                                <option>اقا</option>
+                                <option>خانم</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">کد
+                                کاربر</label>
+                            <input type="text" disabled [defaultValue]="'sg-12346'" name="code" id="item-weight"
+                                class="disabled select-none bg-gray-200 border select-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                placeholder="" required="">
+                        </div>
+                        <div>
+                            <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">رمز
+                                عبور</label>
+                            <div class="flex">
+                                <input type="password" disabled [defaultValue]="'sg-12346'" name="password"
+                                    id="item-weight"
+                                    class=" select-none	 bg-gray-200 border select-none border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
+                                    placeholder="" required="">
+                                <button (click)="openDialog()" class="rounded-l-lg border bg-gray-200 px-1"><i
+                                        class="fas fa-edit"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center mt-8 ">
+                        <button type="submit" class="btn btn-success mt-2 px-32  py-2">
+                            ثبت
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

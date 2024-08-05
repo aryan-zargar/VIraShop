@@ -10,15 +10,20 @@ import { ProductService } from '../../services/Product/product.service';
   templateUrl: './main-page.component.html',
   styleUrl: './main-page.component.scss'
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit {  
 
   public productList:any;
   public _service:any;
+  public Loading:boolean=true;
   constructor(private productService : ProductService){
     this._service = productService;
   }
   ngOnInit(): void {
     this.productList = this._service.getProducts()
+    console.log(this.productList)
+    if(this.productList != null){
+      this.Loading= false
+    }
   }
 
   public redirectToProductDetail(id:any){

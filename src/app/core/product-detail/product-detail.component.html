@@ -2,20 +2,28 @@
     <div class="max-w-screen-xl px-4 mx-auto lg:px-8">
         <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
             <!-- Product Image -->
-            <div class="relative flex justify-center lg:justify-start">
+            <div  class="relative flex justify-center lg:justify-start">
                 <img class="w-full max-w-md lg:max-w-lg rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105"
-                    src="{{ productDetail.imageUrl }}" alt="{{ productDetail.name }}" />
+                  id="img" [src]="imageUrl" alt="{{ productDetail.name }}" />
             </div>
 
             <!-- Product Details -->
             <div class="mt-8 lg:mt-0">
                 <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">
-                    {{ productDetail.name }}
+                    <p [ngClass]="{'hidden':isEditing == true}" >{{ productDetail.name }}</p>
+                    <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >نام محصول</label>
+                    <input [(ngModel)]="productDetail.name" [defaultValue]="productDetail.name" class="form-control" [ngClass]="{'hidden':isEditing == false}" />
                 </h1>
-                <div class="mt-4 text-gray-800">
-                    <span class="text-xl font-bold sm:text-2xl">
-                        {{ productDetail.Price }} تومان
+                <div  class="mt-4 text-gray-800">
+                    <span class="text-xl font-bold sm:text-2xl  "  >
+                        <p [ngClass]="{'hidden':isEditing == true}" >{{ productDetail.Price }}تومان</p> 
+                        <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >قیمت</label>
+                        <input [(ngModel)]="productDetail.Price" [defaultValue]="productDetail.Price" class="form-control" [ngClass]="{'hidden':isEditing == false}" />
                     </span>
+                </div>
+                <div>
+                    <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >لینک عکس</label>
+                    <input [(ngModel)]="productDetail.imageUrl" [defaultValue]="productDetail.imageUrl" class="form-control" [ngClass]="{'hidden':isEditing == false}" />
                 </div>
                 <div class="mt-6 grid grid-cols-2 ">
                     <button
@@ -23,14 +31,22 @@
                         <i class="fas fa-shopping-cart mr-2"></i> افزودن به سبد
                     </button>
                     <button
+                        [ngClass]="{'hidden':isEditing == true}"
+                        (click)="ToggleEditing()"
                         class=" col-span-1 mx-2 px-6 py-3 bg-yellow-500 text-white rounded-lg shadow-lg hover:bg-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-300 transition-transform transform hover:scale-105">
                         <i class="fas fa-pencil mr-2"></i> ایجاد تغییرات
                     </button>
+                    <button
+                        [ngClass]="{'hidden':isEditing == false}"
+                        (click)="EditProduct()"
+                        class=" col-span-1 mx-2 px-6 py-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-400 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform transform hover:scale-105">
+                        <i class="fas fa-check mr-2"></i> ثبت تغییرات
+                    </button>
                 </div>
                 <hr class="my-8 border-gray-300" />
-                <p class="text-gray-700 leading-relaxed">
-                    {{ productDetail.desc }}
-                </p>
+                <p [ngClass]="{'hidden':isEditing == true}" class="text-gray-700 leading-relaxed">{{ productDetail.desc }} </p>
+                <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >توضیحات</label>
+                <textarea [(ngModel)]="productDetail.desc" [defaultValue]="productDetail.desc" class="form-control min-h-72	" [ngClass]="{'hidden':isEditing == false}" ></textarea>
             </div>
         </div>
     </div>
@@ -40,7 +56,7 @@
         class="text-sm font-medium text-center text-gray-500 border-b border-gray-300 mt-16">
         <ul class="flex flex-wrap justify-center -mb-px">
             <li class="mr-2">
-                <a href="./product/{{id}}/#ComplitionDescription"
+                <a (click)="scroll('id')"
                     class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">توضیحات</a>
             </li>
             <li class="mr-2">
@@ -56,40 +72,21 @@
     </div>
 
     <!-- Section Content -->
-    <div class="mt-12  px-20">
+    <div class="mt-12 px-3 text-sm md:px-32 md:text-base">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">توضیحات</h2>
-        <p id="PaymentMethod" class="text-gray-700 leading-loose">
-            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون
-            بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع
-            با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه
-            و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و
-            فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها،
-            و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل
-            دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و
-            با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای
-            شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت
-            و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای
-            طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید
-            داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی
-            دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.لورم ایپسوم متن
-            ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و
-            مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود
-            ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را
-            می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در
-            زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت
-            تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود
-            طراحی اساسا مورد استفاده قرار گیرد.
+        <p id="desc" class="text-gray-700 leading-loose">
+            {{ productDetail.aboutProduct }}
         </p>
     </div>
 
-    <div id="CommentSection" class="mt-20 px-20">
+    <div id="PaymentMethod" class="mt-20 px-3 text-sm md:px-32 md:text-base">
         <h2 class="text-2xl font-semibold text-gray-900 mb-4">روش های پرداخت</h2>
         <p class="text-gray-700">توضیحات مربوط به روش های پرداخت.<i class="fas fa-dollar mx-1" ></i></p>
         
     </div>
-    <div class="mt-20 px-20">
+    <div id="Comment" class="mt-20 text-sm px-3 md:px-32 md:text-base">
         <h2 class="text-2xl font-semibold  text-gray-900 mb-4">نظرات</h2>
-        <div class="w-[32rem] px-10" >
+        <div class="  md:w-[32rem] px-10" >
 
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">
                 نظر شما</label>
