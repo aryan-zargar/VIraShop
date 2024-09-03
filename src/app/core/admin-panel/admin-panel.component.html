@@ -1,0 +1,80 @@
+<div dir="rtl" class="grid grid-cols-5 container my-10">
+    <admin-sidebar class="col-span-1"></admin-sidebar>
+    <div class="col-span-4 border rounded-2xl h-[99%] mt-1">
+
+        <button mat-fab extended class="m-5 bg-emerald-600 text-white ">
+            بروزرسانی محصولات از راهکاران
+        </button>
+        <mat-form-field class="example-form-field">
+            <mat-label style="font-family: 'Rubik';" >نام شرکت</mat-label>
+            <input matInput type="text" [(ngModel)]="CompanyName">
+            @if (CompanyName) {
+            <button matSuffix mat-icon-button aria-label="Clear" (click)="CompanyName=''">
+                <mat-icon>close</mat-icon>
+            </button>
+            }
+        </mat-form-field>
+        <div class="px-52">
+            <input type="file" class="form-control mt-3 hidden " requiredFileType="image/png"
+                (change)="this.CompanyOnFileSelected($event,this.CompanyImageUrl)" #fileUploadC accept=".png">
+            <label class="block mb-2 mt-4 text-sm font-medium text-gray-900">آپلود لوگو شرکت</label>
+            <div class="file-upload  border border-gray-800 rounded-xl p-3 flex flex-col">
+                <div class="flex ">
+                    <button mat-mini-fab color="primary" class="upload-btn mx-3" (click)="fileUploadC.click()"><i
+                            class="fas fa-paperclip"></i></button>
+                    <button class="hidden mx-3 " *ngIf="CompanyImagefile != null" mat-mini-fab><i
+                            class="fas fa-check"></i></button>
+                    <img id="ImagePreviewC" [src]="'data:image/png;base64,'+this.CompanyImageUrl" class="w-28 h-24 hidden justify-self-end " />
+
+                </div>
+                <div class="flex space-x-3">
+                    <p class="mt-4  mx-2"> نام : {{ CompanyFileName }} </p>
+                    <p class="mt-4  mx-2 "> حجم : {{ formatNumberWithCommas(CompanyFileSize) }} Bytes </p>
+                </div>
+            </div>
+        </div>
+        <div class="px-52">
+            <input type="file" class="form-control mt-3 hidden " requiredFileType="image/png"
+                (change)="this.FirstPageOnFileSelected($event,this.FirstPageImageUrl)" #fileUploadF accept=".png">
+            <label class="block mb-2 mt-4 text-sm font-medium text-gray-900">آپلود عکس صفحه اول </label>
+            <div class="file-upload  border border-gray-800 rounded-xl p-3 flex flex-col">
+                <div class="flex ">
+                    <button mat-mini-fab color="primary" class="upload-btn mx-3" (click)="fileUploadF.click()"><i
+                            class="fas fa-paperclip"></i></button>
+                    <button class="hidden mx-3 " *ngIf="FirstPageImagefile != null" mat-mini-fab><i
+                            class="fas fa-check"></i></button>
+                    <img id="ImagePreviewF" [src]="'data:image/png;base64,'+this.FirstPageImageUrl" class="w-28 h-24 hidden justify-self-end " />
+
+                </div>
+                <div class="flex space-x-3">
+                    <p class="mt-4  mx-2"> نام : {{ FirstPageFileName }} </p>
+                    <p class="mt-4  mx-2 "> حجم : {{ formatNumberWithCommas(FirstPageFileSize) }} Bytes </p>
+                </div>
+            </div>
+        </div>
+        <div class="px-52 mb-10">
+            <input type="file" class="form-control mt-3 hidden " requiredFileType="image/png"
+                (change)="this.BackgroundOnFileSelected($event,this.BackgroundImageUrl)" #fileUploadB accept=".png">
+            <label class="block mb-2 mt-4 text-sm font-medium text-gray-900">آپلود پس زمینه صفحه اول </label>
+            <div class="file-upload  border border-gray-800 rounded-xl p-3 flex flex-col">
+                <div class="flex ">
+                    <button mat-mini-fab color="primary" class="upload-btn mx-3" (click)="fileUploadB.click()"><i
+                            class="fas fa-paperclip"></i></button>
+                    <button class="hidden mx-3 " *ngIf="BackgroundImagefile != null" mat-mini-fab><i
+                            class="fas fa-check"></i></button>
+                    <img id="ImagePreviewB" [src]="'data:image/png;base64,'+this.BackgroundImageUrl" class="w-28 h-24 hidden justify-self-end " />
+
+                </div>
+                <div class="flex space-x-3">
+                    <p class="mt-4  mx-2"> نام : {{ BackgroundFileName }} </p>
+                    <p class="mt-4  mx-2 "> حجم : {{ formatNumberWithCommas(BackgroundFileSize) }} Bytes </p>
+                </div>
+            </div>
+        </div>
+        <div class="px-52 mb-10 ">
+            <button (click)="postChanges()" mat-fab extended>
+                ثبت تغییرات
+            </button>
+        </div>
+    </div>
+</div>

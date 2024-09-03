@@ -1,0 +1,123 @@
+<div [class]="'bg-[#F6F7FF] -m-5  '"
+    id="parentComponent"
+    [style]="'background-image:url('+this.imageUrl+');background-size: 100%; background-position-y: 20vh;'">
+    <div dir="rtl" class="mt-9 bg-[#E33226] grid grid-cols-1 md:grid-cols-2 mx-8 md:mx-48 p-4 rounded-2xl   ">
+        <div dir="ltr" class="text-end mt-8 md:pe-32">
+            <h3 class="text-white"> لورم ابپسوم متن ساختگی </h3>
+            <h6 class="text-white text-end">از سال 1998 تلاش برای بهبود </h6>
+            <a href="products">
+
+                <button mat-fab extended class="bg-white mx-4">
+                    مشاهده محصولات
+                </button>
+            </a>
+                
+        </div>
+        <div class="flex justify-center mt-10 md:mt-0">
+            <img class="w-[20rem] h-[20rem]"
+                [src]="'data:image/png;base64,'+this.detail.FirsPageImage" />
+        </div>
+    </div>
+    <div class="flex justify-center mt-24 ">
+        <h4 class="text-center p-4 ">راهنمای دریافت وام</h4>
+    </div>
+    <div class=" mt-2 rounded-2xl mx-8 lg:mx-[35rem] bg-white shadow-2xl">
+        <p class="flex flex-wrap text-end w-full px-6  lg:px-16  pb-2 pt-4 pb-3 ">
+            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
+            بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع
+            با هدف بهبود
+        </p>
+        <div class="flex justify-end">
+            <a href="guide">
+                <button class="me-32 my-3" color="green" mat-flat-button>
+                    <mat-icon>arrow_left_alt</mat-icon>
+                    صفحه ی راهنمای درخواست وام
+                </button>
+            </a>
+        </div>
+
+    </div>
+    <div class="flex justify-center mt-14">
+        <h4> محبوب‌ترین محصولات</h4>
+    </div>
+    <div class=" z-50 shadow-lg">
+
+        <div class="flex justify-center space-x-3 mt-7 border-t border-b bg-white">
+            <app-product dir="rtl" class="w-[15%] my-5  m-1" *ngFor="let product of this.ProductList"
+                [productTitle]="product.name" [productPrice]="product.Price" [productImageUrl]="product.imageUrl"
+                (click)="redirectToProductDetail(product.id)" />
+        </div>
+    </div>
+    <div class="flex justify-center mt-5">
+        <h3>مراحل درخواست وام</h3>
+    </div>
+    <div class="flex justify-center  mt-7">
+        <div dir="rtl" class="w-[50rem] flex flex-wrap">
+            <mat-accordion dir="rtl" class="w-[45%]  mx-2   rounded-xl p-3">
+                <mat-expansion-panel class="shadow-2xl drop-shadow-2xl">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="w-6 "><span class=" bg-red-600 text-white px-3 py-2 rounded-xl">1</span>
+                        </mat-panel-title>
+                        <mat-panel-description class="">
+                            <p dir="ltr" class="my-2     text-left">انتخاب محصول<i
+                                    class="fa-solid fa-box-archive text-red-500 ms-1 "></i></p>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p class="text-end flex flex-wrap">
+                        لورم ایپسوم متن ساختگی با تولید سادگی نامفای متنوع با هدف بهبود
+                        <a href="../../products" class="mt-1 text-sky-500">صفحه ی محصولات <i
+                                class="fas fa-arrow-lef mt-1"></i></a>
+                    </p>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion class="w-[45%]  mx-2   rounded-xl p-3">
+                <mat-expansion-panel class="shadow-2xl drop-shadow-2xl">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title><span
+                                class="justify-self-end bg-red-600 text-white px-3 py-2 rounded-xl">2</span>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <p dir="ltr" class="my-2 mx-2 text-left"> مشاهده اقساط<i
+                                    class="fa-solid fa-file-invoice text-red-500 ms-1 "></i></p>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p class="text-end flex flex-wrap">لورم ایپسوم متن ساختگی با تولید سادگی نامفای متنوع با هدف بهبود
+                    </p>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion class="w-[45%]  mx-2 my-1  rounded-xl p-3">
+                <mat-expansion-panel class="shadow-2xl drop-shadow-2xl">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title><span
+                                class="justify-self-end bg-red-600 text-white px-3 py-2 rounded-xl">3</span>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <p dir="ltr" class="my-2 mx-2"> بررسی مدارک<i
+                                    class="fa-solid fa-id-card text-red-500 ms-1 "></i></p>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p class="text-end flex flex-wrap">لورم ایپسوم متن ساختگی با تولید سادگی نامفای متنوع با هدف بهبود
+                    </p>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <mat-accordion class="w-[45%]  mx-2 my-1  rounded-xl p-3">
+                <mat-expansion-panel class="shadow-2xl drop-shadow-2xl">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title><span
+                                class="justify-self-end bg-red-600 text-white px-3 py-2 rounded-xl">4</span>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <p dir="ltr" class="my-2 mx-2"> پرداخت<i
+                                    class="fa-solid fa-money-check-dollar text-red-500 ms-1 "></i></p>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <p class="text-end flex flex-wrap">لورم ایپسوم متن ساختگی با تولید سادگی نامفای متنوع با هدف بهبود
+                    </p>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </div>
+
+    </div>
+</div>

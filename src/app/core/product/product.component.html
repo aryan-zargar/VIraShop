@@ -1,6 +1,16 @@
-<div class="bg-gray-50  cursor-pointer mx-[2px]  border-dark hover:z-50  hover:drop-shadow-2xl   w-fit h-fit pb-4" >
-    <img  class="rounded-t-md w-full  pt-4 px-16"  [src]="imageUrl" />
-    <div class="flex justify-center" ><p class="text-lg mx-1 mt-3" >{{productTitle}}</p></div>
-    <div class="flex justify-center mt-1" ><p dir="rtl" class="text-base mx-1 text-gray-500" >{{productPrice}} تومان</p></div>
-    <span class="fas fa-text" ></span>
+<div class="bg-gray-100 z-0 scale-95 hover:z-50 cursor-pointer mx-[2px]  border-dark  hover:scale-100 hover:bg-gray-200 rounded-xl  hover:drop-shadow-lg transition-all duration-300  w-fit h-fit pb-4">
+    <div class=" px-8 pt-4 pb-2 rounded-xl " >
+        <img class=" md:size-64 w-full  rounded-xl " [src]="'data:image/png;base64,'+imageUrl" />
+    </div>
+    <div class="flex text-balance justify-start space-x-3 ps-4">
+        <p [matTooltip]="productTitle" matTooltipClass="rubikFont" class=" mx-1 mt-3 text-lg product_title">{{productTitle}}</p>
+    </div>
+    <div>
+    </div>
+    <div class="flex justify-around mt-1">
+        <p dir="rtl" class="text-base mx-1 text-gray-700">{{ numberWithCommas(productPrice.toString())}} تومان</p>
+        <p matTooltipClass="rubikFont" class=" mx-1 -mt-1 text-base" >5.0 <i class="fas fa-star text-amber-400" ></i> </p>
+
+    </div>
+    <span class="fas fa-text"></span>
 </div>

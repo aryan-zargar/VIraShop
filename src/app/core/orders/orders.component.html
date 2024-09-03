@@ -6,13 +6,8 @@
                 <h2 class="mb-4 text-xl font-bold text-gray-900 " style="font-family: 'Rubik';"> سفارشات </h2>
                 
             </div>
-            <app-order/>
-            <app-order/>
-            <app-order/>
-            <app-order/>
-            <app-order/>
-            <app-order/>
-
+            
+            <app-order *ngFor="let order of ordersList" [orderId]="order.id" [status]="order.IsEnded" [Code]="order.Code" [date]="order.Date" />
         </div>
     </div>
 </div>

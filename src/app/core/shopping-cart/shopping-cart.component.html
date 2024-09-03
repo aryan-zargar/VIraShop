@@ -1,0 +1,142 @@
+<section class="bg-white py-8 antialiased  md:py-16 light" dir="rtl">
+  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <h2 class="text-xl font-semibold text-gray-900  sm:text-2xl" style="font-family: 'Rubik';">سبد خرید </h2>
+
+    <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+      <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
+        <div class="space-y-6">
+          <div class="relative overflow-x-auto  rounded-xl shadow-xl">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500  ">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    تعداد تسهیلات
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    نرخ تسهیلات
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    تعداد اقساط 
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    مبلغ آخرین قسط
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="bg-white border-b ">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                    {{ this.installmentPreviewData.InstallmentPreview.FacilitiesAmount }}
+                  </th>
+                  <td class="px-6 py-4">
+                    {{ this.installmentPreviewData.InstallmentPreview.FacilitiesIntrest }}%
+
+                  </td>
+                  <td class="px-6 py-4">
+                    {{ this.installmentPreviewData.InstallmentPreview.InstallmentAmount }}
+
+                  </td>
+                  <td class="px-6 py-4">
+                    {{ this.installmentPreviewData.InstallmentPreview.LastInstallmentAmount }}
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm ">
+            <div class="relative border rounded-xl shadow-lg overflow-x-auto">
+              <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
+                  <tr>
+                    <th scope="col" class="px-3 py-3">
+                      ردیف
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                      تاریخ
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                      قیمت
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                      اصل
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                      فرع
+                    </th>
+                    <th scope="col" class="px-3 py-3">
+                      قیمت کل
+                    </th>
+                  </tr>
+                </thead>                
+                <tbody *ngIf="installmentPreviewData" >
+                  <tr  *ngFor="let installment of installmentPreviewData.ContractInstallment" class="bg-white border-b text-black ">
+                    
+                    <th scope="row" class="px-3 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                      {{ installment.id }}
+                    </th>
+                    <td class="px-3 py-4">
+                      {{ installment.DueDate }}
+                    </td>
+                    <td class="px-3 py-4">
+                      {{ installment.ContractAmount }}
+                    </td>
+                    <td class="px-3 py-4">
+                      {{ installment.ContractMainAmount }}
+                    </td>
+                    <td class="px-3 py-4">
+                      {{ installment.ContractIntrestAmount }}
+                    </td>
+                    <td class="px-3 py-4">
+                      {{ installment.ContractTotalAmount }}
+
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
+        <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+          <p class="text-xl font-semibold text-gray-900">Order summary</p>
+
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="text-base font-normal text-gray-500 ">Original price</dt>
+                <dd class="text-base font-medium text-gray-900">$7,592.00</dd>
+              </dl>
+
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="text-base font-normal text-gray-500 ">Savings</dt>
+                <dd class="text-base font-medium text-green-600">-$299.00</dd>
+              </dl>
+
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="text-base font-normal text-gray-500 ">Store Pickup</dt>
+                <dd class="text-base font-medium text-gray-900 ">$99</dd>
+              </dl>
+
+              <dl class="flex items-center justify-between gap-4">
+                <dt class="text-base font-normal text-gray-500 ">Tax</dt>
+                <dd class="text-base font-medium text-gray-900 ">$799</dd>
+              </dl>
+            </div>
+
+            <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 ">
+              <dt class="text-base font-bold text-gray-900">Total</dt>
+              <dd class="text-base font-bold text-gray-900">$8,191.00</dd>
+            </dl>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>

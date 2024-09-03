@@ -1,0 +1,60 @@
+<div class="flex justify-center ">
+    <div class="mt-8" dir="rtl" >
+        <p class="text-3xl " >لیست اقساط قابل پرداخت</p>
+        <div class="relative overflow-x-auto  sm:rounded-lg shadow-2xl my-8">
+            <table dir="rtl" class="w-full text-sm text-left rtl:text-right  ">
+                <thead class="text-xs  uppercase bg-gray-100 ">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            ردیف
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            تاریخ
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            قیمت
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            اصل
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            فرع
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            قیمت کل
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            -
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let installment of this.product_installment" class="odd:bg-white  even:bg-gray-50">
+                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ this.product_installment.indexOf(installment)+1 }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ convertGregoryDateToJalali(installment.DueDate.toString()) }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ formatNumberWithCommas(installment.ContractAmount) }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ formatNumberWithCommas(installment.ContractMainAmount) }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ formatNumberWithCommas(installment.ContractIntrestAmount) }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ formatNumberWithCommas(installment.ContractTotalAmount) }}
+                        </td>
+                        <td class="px-6 py-4">
+                            <button class="btn btn-success scale-75"
+                                [disabled]="installment.isPayed == true">پرداخت</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

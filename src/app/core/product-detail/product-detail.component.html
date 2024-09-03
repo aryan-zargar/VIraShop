@@ -1,99 +1,160 @@
 <section dir="rtl" class="pb-16 pt-5 bg-gray-100 antialiased">
     <div class="max-w-screen-xl px-4 mx-auto lg:px-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center justify-center px-2 sm:px-4 lg:px-8 sm:py-2 lg:py-6">
             <!-- Product Image -->
-            <div  class="relative flex justify-center lg:justify-start">
-                <img class="w-full max-w-md lg:max-w-lg rounded-lg shadow-xl transform transition-transform duration-300 hover:scale-105"
-                  id="img" [src]="imageUrl" alt="{{ productDetail.name }}" />
+            <div
+                class="relative flex justify-center rounded-xl bg-gray-100 shadow-2xl drop-shadow-2xl  xl:h-[105%] md:w-[100%] xl:w-[112%] z-50 ">
+                <img class=" lg:w-auto lg:min-h-[70%] lg:w-[80%] aspect-square	 rounded-lg  xl:my-auto xl:mx-auto  transform transition-transform duration-300 z-50 hover:scale-105"
+                    id="img" [src]="'data:image/png;base64,'+imageUrl" alt="{{ productDetail.name }}" />
             </div>
 
             <!-- Product Details -->
-            <div class="mt-8 lg:mt-0">
-                <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">
-                    <p [ngClass]="{'hidden':isEditing == true}" >{{ productDetail.name }}</p>
-                    <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >نام محصول</label>
-                    <input [(ngModel)]="productDetail.name" [defaultValue]="productDetail.name" class="form-control" [ngClass]="{'hidden':isEditing == false}" />
-                </h1>
-                <div  class="mt-4 text-gray-800">
-                    <span class="text-xl font-bold sm:text-2xl  "  >
-                        <p [ngClass]="{'hidden':isEditing == true}" >{{ productDetail.Price }}تومان</p> 
-                        <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >قیمت</label>
-                        <input [(ngModel)]="productDetail.Price" [defaultValue]="productDetail.Price" class="form-control" [ngClass]="{'hidden':isEditing == false}" />
-                    </span>
+            <div class=" flex  md:py-8 h-[120%]  items-center">
+                <div class="h-[80%]  rounded-xl bg-[#FFFFFF] px-3">
+                    <h1 class="text-2xl font-bold text-gray-900 sm:text-1xl  z-40">
+                        <label class="font-semibold text-lg" [ngClass]="{'hidden':isEditing == false}">نام محصول</label>
+                        <input [(ngModel)]="productDetail.name" [defaultValue]="productDetail.name" class="form-control"
+                            [ngClass]="{'hidden':isEditing == false}" />
+                    </h1>
+                    <p class=" text-3xl font-medium product_title" [ngClass]="{'hidden':isEditing == true}">{{
+                        productDetail.name }}</p>
+
+                    <div class=" text-gray-800">
+                        <span class="text-xl font-bold   ">
+                            <label class="font-semibold text-lg" [ngClass]="{'hidden':isEditing == false}">قیمت</label>
+                            <input [(ngModel)]="productDetail.Price" [defaultValue]="productDetail.Price"
+                                class="form-control" [ngClass]="{'hidden':isEditing == false}" />
+                        </span>
+                    </div>
+                    <div class="flex -mt-3">
+                        <p class="space-x-3 mx-2 text-xl" dir="ltr" [ngClass]="{'hidden':isEditing == true}">{{
+                            numberWithCommas(productDetail.Price) }}</p>
+                        <p class="text-xl">تومان</p>
+                    </div>
+                    <div>
+                        <label class="font-semibold text-lg" [ngClass]="{'hidden':isEditing == false}">لینک عکس</label>
+                        <input [(ngModel)]="productDetail.imageUrl" [defaultValue]="productDetail.imageUrl"
+                            class="form-control" [ngClass]="{'hidden':isEditing == false}" />
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 ">
+                        <button (click)="scrollSmoothTo('payment')"
+                            class=" col-span-1 mx-2 px-6 py-3 bg-green-600 text-white rounded-lg  hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform transform hover:scale-105">
+                            <i class="fas fa-shopping-cart mr-2"></i> خرید
+                        </button>
+                        <button [ngClass]="{'hidden':isEditing == true}" (click)="ToggleEditing()"
+                            class=" col-span-1 mx-2 px-6 py-3 bg-yellow-500 text-white rounded-lg  hover:bg-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-300 transition-transform transform hover:scale-105">
+                            <i class="fas fa-pencil mr-2"></i> ویرایش
+                        </button>
+                        <button [ngClass]="{'hidden':isEditing == false}" (click)="EditProduct()"
+                            class=" col-span-1 mx-2 px-6 py-3 bg-green-500 text-white rounded-lg  hover:bg-green-400 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform transform hover:scale-105">
+                            <i class="fas fa-check mr-2"></i> ثبت تغییرات
+                        </button>
+                    </div>
+                    <div class="px-10" >
+                        <button class="my-3 scale-125" mat-icon-button >
+                            <mat-icon class="text-gray-600">favorite</mat-icon>
+                        </button>
+                        <button class="my-3 scale-125" mat-icon-button >
+                            <mat-icon class="text-gray-500" >thumb_up</mat-icon>
+                        </button>
+                    </div>
+                    <hr class="mb-8 border-gray-300" />
+                    <p [ngClass]="{'hidden':isEditing == true}" class="text-gray-700 m-5 leading-relaxed">{{
+                        productDetail.desc
+                        }} </p>
+                    <label class="font-semibold text-lg" [ngClass]="{'hidden':isEditing == false}">توضیحات</label>
+                    <textarea [(ngModel)]="productDetail.desc" [defaultValue]="productDetail.desc"
+                        class="form-control min-h-72	" [ngClass]="{'hidden':isEditing == false}"></textarea>
                 </div>
-                <div>
-                    <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >لینک عکس</label>
-                    <input [(ngModel)]="productDetail.imageUrl" [defaultValue]="productDetail.imageUrl" class="form-control" [ngClass]="{'hidden':isEditing == false}" />
-                </div>
-                <div class="mt-6 grid grid-cols-2 ">
-                    <button
-                        class=" col-span-1 mx-2 px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-500 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform transform hover:scale-105">
-                        <i class="fas fa-shopping-cart mr-2"></i> افزودن به سبد
-                    </button>
-                    <button
-                        [ngClass]="{'hidden':isEditing == true}"
-                        (click)="ToggleEditing()"
-                        class=" col-span-1 mx-2 px-6 py-3 bg-yellow-500 text-white rounded-lg shadow-lg hover:bg-yellow-400 focus:outline-none focus:ring-4 focus:ring-yellow-300 transition-transform transform hover:scale-105">
-                        <i class="fas fa-pencil mr-2"></i> ایجاد تغییرات
-                    </button>
-                    <button
-                        [ngClass]="{'hidden':isEditing == false}"
-                        (click)="EditProduct()"
-                        class=" col-span-1 mx-2 px-6 py-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-400 focus:outline-none focus:ring-4 focus:ring-green-300 transition-transform transform hover:scale-105">
-                        <i class="fas fa-check mr-2"></i> ثبت تغییرات
-                    </button>
-                </div>
-                <hr class="my-8 border-gray-300" />
-                <p [ngClass]="{'hidden':isEditing == true}" class="text-gray-700 leading-relaxed">{{ productDetail.desc }} </p>
-                <label class="font-semibold text-lg"  [ngClass]="{'hidden':isEditing == false}" >توضیحات</label>
-                <textarea [(ngModel)]="productDetail.desc" [defaultValue]="productDetail.desc" class="form-control min-h-72	" [ngClass]="{'hidden':isEditing == false}" ></textarea>
             </div>
         </div>
     </div>
 
     <!-- Tabs -->
     <div id="ComplitionDescription"
-        class="text-sm font-medium text-center text-gray-500 border-b border-gray-300 mt-16">
-        <ul class="flex flex-wrap justify-center -mb-px">
+        class="text-sm font-medium text-center text-gray-500 border-b md:mx-96 border-gray-300 mt-16">
+        <ul id="description" class="flex flex-wrap justify-center -mb-px">
             <li class="mr-2">
-                <a (click)="scroll('id')"
-                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">توضیحات</a>
+                <a (click)="scrollSmoothTo('description')"
+                    class="inline-block p-4 border-b-2 border-transparent cursor-pointer rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">توضیحات</a>
             </li>
             <li class="mr-2">
-                <a href="./product/{{ id }}/#PaymentMethod"
-                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">روش
+                <a (click)="scrollSmoothTo('payment')"
+                    class="inline-block p-4 border-b-2 border-transparent cursor-pointer rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">روش
                     های پرداخت</a>
             </li>
             <li class="mr-2">
-                <a href="./product/{{ id }}/#CommentSection"
-                    class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">نظرات</a>
+                <a (click)="scrollSmoothTo('comment')"
+                    class="inline-block p-4 border-b-2 border-transparent cursor-pointer rounded-t-lg hover:text-gray-700 hover:border-gray-400 transition duration-300">نظرات</a>
             </li>
         </ul>
     </div>
 
     <!-- Section Content -->
-    <div class="mt-12 px-3 text-sm md:px-32 md:text-base">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">توضیحات</h2>
-        <p id="desc" class="text-gray-700 leading-loose">
+    <div id="payment" class="mt-12 px-3 text-sm md:mx-32 md:text-base">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">توضیحات</h3>
+        <p class="text-gray-700 leading-loose">
             {{ productDetail.aboutProduct }}
         </p>
     </div>
 
-    <div id="PaymentMethod" class="mt-20 px-3 text-sm md:px-32 md:text-base">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-4">روش های پرداخت</h2>
-        <p class="text-gray-700">توضیحات مربوط به روش های پرداخت.<i class="fas fa-dollar mx-1" ></i></p>
-        
+    <div class="mt-20 px-3 text-sm md:mx-32 md:text-base">
+        <h3 class="text-2xl font-semibold text-gray-900 mb-4">روش های پرداخت</h3>
+        <!-- <p class="text-gray-700">توضیحات مربوط به روش های پرداخت.<i class="fas fa-dollar mx-1" ></i></p>
+          -->
+        <div>
+            <mat-form-field class="w-96  ">
+                <mat-label style="font-family: 'Rubik';" class="h-full ">پلن قیمت </mat-label>
+                <mat-select>
+                    @for (protocol of protocols; track protocol) {
+                    <mat-option style="font-family: 'Rubik';" [value]="protocol.id">از {{ protocol.fromMonth }} ماه تا
+                        {{ protocol.toMonth }} ماه با نرخ {{ protocol.rate }} </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>نرخ سود</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label> نرخ سود موثر</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>ماه قرارداد</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>فاصله بین اقساط</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>درصد ضمانت</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>نرخ جریمه تاثیر (درصد) </mat-label>
+            <input matInput>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>درصد برگشت سود اقساط آتی </mat-label>
+            <input matInput>
+        </mat-form-field>
+
+
     </div>
-    <div id="Comment" class="mt-20 text-sm px-3 md:px-32 md:text-base">
-        <h2 class="text-2xl font-semibold  text-gray-900 mb-4">نظرات</h2>
-        <div class="  md:w-[32rem] px-10" >
+    <div id="comment" class="mt-20 text-sm px-3 md:mx-32 md:text-base">
+        <h3 class="text-2xl font-semibold  text-gray-900 mb-4">نظرات</h3>
+        <div class="  md:w-[32rem] px-10">
 
             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 ">
                 نظر شما</label>
             <textarea id="message" rows="4"
                 class="block p-2.5  w-full text-sm text-gray-900 bg-gray-50 rounded-lg border  focus:ring-blue-500 focus:border-blue-500   focus:ring-blue-500 focus:border-blue-500"
                 placeholder="لطفا نظر خود را وارد کنید"></textarea>
-            <button class="btn btn-success mt-4 w-24 " >ثبت</button>
+            <button class="btn btn-success mt-4 w-24 ">ثبت</button>
         </div>
     </div>
 </section>

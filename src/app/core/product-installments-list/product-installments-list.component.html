@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="grid grid-cols-6   mt-3" dir="rtl">
+        <app-sidebar class=" col-span-6 lg:col-span-1" />
+        <div class=" col-span-6 lg:col-span-5 py-7 m-1 border rounded-xl">
+            <div class="flex justify-center">
+                <h3 class="mb-4 text-lg font-bold text-gray-900 " style="font-family: 'Rubik';"> لیست اقساط </h3>
+            </div>
+            <div class="flex justify-center">
+                <h5>شماره سفارش {{OrderId}}</h5>
+            </div>
+            <div class="px-20 mt-2">
+                <div class="relative overflow-x-auto  border border-gray-700 rounded-lg">
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500  ">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    شماره قسط
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    نام کالا
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    تاریخ
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    مبلغ قابل پرداخت قسط
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    وضیعت
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    عملیات
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let installment of this.installmentsList" class="bg-white border-b ">
+                                <td scope="row" class="ps-12 py-3">
+                                    {{ installment.InstallmentIndex }}
+                                </td>
+                                <td scope="row" class="px-6 py-4 font-   text-gray-900 whitespace-nowrap ">
+                                    {{ getProductById(installment.ProductRef).name }}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    {{ convertGregoryDateToJalali(installment.Date) }}
+                                </td>
+                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                    {{ formatNumberWithCommas(installment.InstallmentPrice) }} تومان
+                                </td>
+                                <td class="px-6 py-4">
+                                    <p *ngIf="installment.isPayed == true" class="text-emerald-600 font-bold">پرداخت شده</p>
+                                    <p *ngIf="installment.isPayed == false" class="text-red-600 font-bold">پرداخت نشده</p>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success scale-75" [disabled]="installment.isPayed == true">پرداخت</button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

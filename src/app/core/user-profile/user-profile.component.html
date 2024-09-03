@@ -1,4 +1,11 @@
-<div class="container">
+<style>
+    .uploader-cfg {
+        --ctx-name: "uploader";
+        --cfg-pubkey: "123456789456789";
+        background-color: red;
+    }
+</style>
+<div class="container " style="overflow-x: hidden;">
     <div class=" grid grid-cols-1 md:grid md:grid-cols-6 mt-3" dir="rtl">
         <app-sidebar class="col-span-1" />
         <section class="bg-white border rounded-xl m-1 col-span-1 md:col-span-5">
@@ -13,26 +20,25 @@
 
                 <!-- <p class="mb-4 text-xl font-bold text-gray-900 text-4xl">اطلاعات حساب کاربری<p> -->
                 <p class="text-3xl">اطلاعات حساب کاربری</p>
-
-
                 <form action="#">
                     <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                         <div class="sm:col-span-1  ">
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">نام</label>
-                            <input [defaultValue]="'علی اصغر'" type="text" name="name" id="name"
+                            <input [(ngModel)]="this.name" type="text" name="name" id="name"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                 placeholder="" required="">
                         </div>
+                        
                         <div class="w-full">
                             <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 ">نام
                                 خانوادگی</label>
-                            <input [defaultValue]="'افغان'" type="text" name="familyName" id="familyName"
+                            <input [(ngModel)]="this.surname" type="text" name="familyName" id="familyName"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                 placeholder="" required="">
                         </div>
                         <div class="w-full">
                             <label for="price" class="block mb-2 text-sm font-medium text-gray-900 ">کدملی</label>
-                            <input [defaultValue]="'ندارد (تابعیت ایران نیست)'" name="nationalCode" id="nationalCode"
+                            <input [(ngModel)]="this.nationalId" name="nationalCode" id="nationalCode"
                                 class="bg-gray-50 select-none  border select-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                 placeholder="" required="">
                         </div>
@@ -40,13 +46,13 @@
                         <div>
                             <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">شماره تلفن
                                 همراه</label>
-                            <input dir="ltr" [defaultValue]="'09931278593'" type="text" name="phone" id="phone"
+                            <input dir="ltr" [(ngModel)]="this.phoneNumber" type="text" name="phone" id="phone"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                 placeholder="" required="">
                         </div>
                         <div>
                             <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">ایمیل</label>
-                            <input [defaultValue]="'aliAfghan@mail.afg'" type="email" name="email" id="email"
+                            <input [(ngModel)]="this.email" type="email" name="email" id="email"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                 placeholder="" required="">
                         </div>
@@ -62,7 +68,7 @@
                         <div>
                             <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">کد
                                 کاربر</label>
-                            <input type="text" disabled [defaultValue]="'sg-12346'" name="code" id="item-weight"
+                            <input type="text" disabled [(ngModel)]="this.userCode" name="code" id="item-weight"
                                 class="disabled select-none bg-gray-200 border select-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                 placeholder="" required="">
                         </div>
@@ -70,7 +76,7 @@
                             <label for="item-weight" class="block mb-2 text-sm font-medium text-gray-900 ">رمز
                                 عبور</label>
                             <div class="flex">
-                                <input type="password" disabled [defaultValue]="'sg-12346'" name="password"
+                                <input type="password" disabled [defaultValue]="this.userPassword" name="password"
                                     id="item-weight"
                                     class=" select-none	 bg-gray-200 border select-none border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 border-gray-600 placeholder-gray-400  focus:ring-primary-500 focus:border-primary-500"
                                     placeholder="" required="">
@@ -79,12 +85,30 @@
                             </div>
                         </div>
                     </div>
+                    <input type="file" class="form-control mt-3 hidden " requiredFileType="image/png"
+                        (change)="this.onFileSelected($event,this.ImageUrl)" #fileUpload accept=".png" >
+                    <label class="block mb-2 mt-4 text-sm font-medium text-gray-900">آپلود عکس کاربری</label>
+                    <div class="file-upload  border border-gray-800 rounded-xl p-3 flex flex-col">
+                        <div class="flex ">
+                            <button mat-mini-fab color="primary" class="upload-btn mx-3" (click)="fileUpload.click()"><i
+                                    class="fas fa-paperclip"></i></button>
+                            <button class="hidden mx-3 " *ngIf="Imagefile != null" mat-mini-fab><i
+                                    class="fas fa-check"></i></button>
+                            <img id="ImagePreview" class="w-28 h-24 hidden justify-self-end " />
+
+                        </div>
+                        <div class="flex space-x-3">
+                            <p class="mt-4  mx-2"> نام : {{ FileName }} </p>
+                            <p class="mt-4  mx-2 "> حجم : {{ formatNumberWithCommas(FileSize) }} Bytes </p>
+                        </div>
+                    </div>
                     <div class="flex justify-center mt-8 ">
                         <button type="submit" class="btn btn-success mt-2 px-32  py-2">
                             ثبت
                         </button>
                     </div>
                 </form>
+
             </div>
         </section>
     </div>

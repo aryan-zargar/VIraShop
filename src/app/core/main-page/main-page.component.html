@@ -1,5 +1,5 @@
 <div class="mb-5">
-
+    <!-- 
     <div id="carouselExampleIndicators" class="carousel slide">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -39,20 +39,76 @@
             <img width="60" class=" mx-3 md:mx-10 cursor-pointer " height="60"
                 src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
             <img width="60" class=" mx-3 md:mx-10 cursor-pointer" height="60"
-                src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
+                src="https://dkstatics-public.digikala.com/digikala-bellatrix/d0dc0edf879e963e9cff31fd57b3f101743ddac8_1707297619.png" />
             <img width="60" class=" mx-3 md:mx-10 cursor-pointer" height="60"
                 src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
             <img width="60" class=" mx-3 md:mx-10 cursor-pointer" height="60"
-                src="https://dkstatics-public.digikala.com/digikala-bellatrix/c13bd207cfaf3009e063e010dc4234eef96b1d13_1708971660.png" />
+                src="https://dkstatics-public.digikala.com/digikala-bellatrix/d0dc0edf879e963e9cff31fd57b3f101743ddac8_1707297619.png" />
 
         </div>
+    </div> -->
+    <div class="py-3 flex justify-end ">
+        <div></div>
+
+        <form>
+            <mat-form-field dir="rtl" id="search" class=" w-[25rem] md:w-[35rem] mx-5 ">
+                <input [ngModelOptions]="{standalone: true}" matInput class="h-10 w-[100%]"
+                    placeholder="کالای مورد نظر خود را جستجو کنید" [(ngModel)]="searchKeyWord" />
+                <span matTextPrefix><button (click)="searchInProducts(this.searchKeyWord)" class="mx-2 ms-3"><i
+                            class="fas fa-search "></i></button></span>
+            </mat-form-field>
+        </form>
     </div>
-    <div class="grid grid-cols-4">
-        <div *ngIf="!Loading" dir="rtl" class=" col-span-3 grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1  ">
-            <app-product  class="col-span-1" *ngFor="let product of productList" [productTitle]="product.name"
-                [productPrice]="product.Price" [productImageUrl]="product.imageUrl" (click)="redirectToProductDetail(product.id)"/>
+    <div class="grid grid-cols-5">
+        <div class=" col-span-5 md:col-span-4">
+            <div class="flex justify-end py-2 px-3 space-x-5 font-medium select-none">
+
+                <a (click)="SortByDefault()" class="cursor-pointer text-sm">پیش‌فرض</a>
+                <a class="cursor-pointer text-sm">محبوب‌ترین</a>
+                <a (click)="SortByHighestPrice()" class="cursor-pointer text-sm">گران‌‌‌ترین</a>
+                <a (click)="SortByLowestPrice()" class="cursor-pointer text-sm">ارزان‌ترین</a>
+                <p class=" text-sm select-none"> : مرتب سازی <i class="fas fa-arrow-up-wide-short"></i> </p>
+            </div>
+            <div *ngIf="Loading" class="flex justify-center">
+                <div class="flex">
+                    <div class="spinner-border text-danger mx-1 -mt-1" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div class="flex justify-center mx-1">
+                        <p>در حال بارگذاری</p>
+                    </div>
+
+                </div>
+            </div>
+            <div *ngIf="this.ProductNotFound" class="flex justify-center">
+                <div>
+                    <img src="assets/images/404-computer.svg">
+                    <div class="text-center text-2xl" >
+                        <p>!محصولی با این مشخصات یافت نشد</p>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!Loading" dir="rtl" class=" grid lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-2 grid-cols-2  ">
+
+                <app-product class="col-span-1 " *ngFor="let product of searchedProductList"
+                    [productTitle]="product.name" [productPrice]="product.Price" [productImageUrl]="product.imageUrl"
+                    (click)="redirectToProductDetail(product.id)" />
+            </div>
+            <div class="flex justify-center mt-10">
+                <div class="flex ">
+                    <span
+                        class="border-t  border-l border-b border-r p-3 select-none text-sky-500 text-lg  rounded-l-xl "
+                        (click)="!IsLastDisabled?this.lastPagination():''"
+                        [ngClass]="{'text-black':IsLastDisabled == true,'cursor-pointer':!IsLastDisabled}">«</span>
+                    <span class="border-t  border-b p-3 pt-3">{{ this.pageCount }}</span>
+                    <span class="border-t  border-r border-b border-l p-3 select-none rounded-r-xl text-sky-500 text-lg"
+                        (click)="!IsNextDisabled?this.nextPagination():''"
+                        [ngClass]="{'text-black':IsNextDisabled == true,'cursor-pointer':!IsNextDisabled}">»</span>
+
+                </div>
+            </div>
         </div>
-        <div class="col-span-1 border">
+        <div *ngIf="!Loading" class="col-span-1 border hidden md:block">
             a
         </div>
     </div>

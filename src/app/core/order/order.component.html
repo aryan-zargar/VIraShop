@@ -1,26 +1,24 @@
 <div class="md:px-20 mt-10" >
     <div class="mx-10 border py-3 rounded-xl my-3" >
-        <div class="px-10 flex justify-start " >
-            <span class="flex" > <i class="fas fa-circle-check text-xl text-success me-4 mt-1"></i>  <p class="mt-1" >تحویل شده</p></span>
+        <div class="px-10 flex justify-start  "  >
+            <span class="flex"  > <i *ngIf="this.status" class="fas fa-circle-check text-xl text-success me-4 mt-1"></i><i *ngIf="!this.status " class="fas fa-hourglass-half   text-xl text-warning    me-4 mt-1"></i>  <p *ngIf="status" class="mt-1" >تحویل شده</p><p *ngIf="!status" class="mt-1" >در حال پردازش</p></span>
         </div>
         <div class="mt-3 flex-col md:flex md:flex-row w-full  px-10 md:px-24 " >
-            <span class="md:ms-5 lg:ms-5 lg:mt-4 ms-5  text-gray-500"> 18 تیر 1403 </span>
-            <p class=" mt-3  md:ms-10 md:mx-0" >کد سفارش : 1860042</p>
+            <span class="md:ms-5 lg:ms-5 lg:mt-4 ms-5  text-gray-500"> {{ convertGregoryDateToJalali(this.date) }}</span>
+            <p class=" mt-3  md:ms-10 md:mx-0" >کد سفارش : {{ this.orderId }}</p>
 
         </div>
         
-        <p class=" m-5 md:ms-10 md:px-24 mt-3" >مبلغ : 350,000</p>
+        <!-- <p class=" m-5 md:ms-10 md:px-24 mt-3" >مبلغ : 350,000</p> -->
 
         <div class=" flex flex-wrap py-4 md:px-12 mt-4 border border-y" >
-            <img class="size-[6rem] mx-2" src="https://dkstatics-public.digikala.com/digikala-products/8db2da04d4e1d71e5d3c3310caf6ec4ae520c22b_1673211073.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" />
-            <img class="size-[6rem] mx-2" src="https://dkstatics-public.digikala.com/digikala-products/444cd886a34cf0dc09a3fe448822c8d8a7ad0f93_1621795716.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60"  />
-            <img class="size-[4rem] mx-2" src="https://dkstatics-public.digikala.com/digikala-products/72d442942d76dd1a723d2f74771a065c7e1411e2_1710002239.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" >
-            <img class="size-[4rem] mx-2" src="https://dkstatics-public.digikala.com/digikala-products/72d442942d76dd1a723d2f74771a065c7e1411e2_1710002239.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" >
-            <img class="size-[6rem] mx-2" src="https://dkstatics-public.digikala.com/digikala-products/8db2da04d4e1d71e5d3c3310caf6ec4ae520c22b_1673211073.jpg?x-oss-process=image/resize,m_lfit,h_350,w_350/quality,q_60" />
+            <img  *ngFor="let product of this.ProductList" class="w-24 h-20 mx-2" [matTooltip]="product.ProductName" matTooltipClass="tooltip" [src]="'data:image/png;base64,'+product.imageUrl" />
 
         </div>
         <div class="flex justify-end px-10 mt-3 " >
-            <span class="cursor-pointer" ><i class="fas fa-receipt mx-1 text-sky-700 mt-1" ></i><a class="text-sky-500"  >مشاهده فاکتور</a></span>
+            <span class="cursor-pointer mx-2 " dir="ltr" ><i class="fas fa-file-invoice mx-1 text-sky-700 mt-1" ></i><a class="text-sky-500"  >مشاهده فاکتور</a></span>
+            <span (click)="redirect('product_installment/'+this.orderId)" class="cursor-pointer mx-2" dir="ltr" ><i class="fas fa-money-bill-1  mx-1 text-sky-700 mt-1" ></i><a class=""  >مشاهده اقساط</a></span>
+
         </div>
     </div>
 </div>

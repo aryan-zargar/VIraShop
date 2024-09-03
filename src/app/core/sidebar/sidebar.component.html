@@ -1,9 +1,9 @@
 <div class=" py-3   m-1 border rounded-xl">
     <div class="flex justify-around mt-4 " dir="rtl">
-        <p class="mt-1">علی اصغر افغان</p><i class="fas fa-user h-fit border rounded-2xl p-2"></i>
+        <p class="mt-1 flex flex-wrap">{{ userData.name }} {{ surname }}</p><i class="fas fa-user h-fit border rounded-2xl p-2"></i>
     </div>
     <div class="flex justify-start -mt-2 px-4">
-        <p class="mt-1 text-sm text-gray-500" dir="ltr">0993 127 8593</p>
+        <p class="mt-1 text-sm text-gray-500" dir="ltr">{{ (this.phoneNumber) }}</p> 
     </div>
     <div class="flex justify-around mt-3 cursor-pointer select-none">
         <p dir="ltr" >کیف پول<i class="fas fa-wallet mt-2 mx-2 "></i></p>

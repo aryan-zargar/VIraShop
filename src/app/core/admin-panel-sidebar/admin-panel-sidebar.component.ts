@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { UserService } from '../../services/User/user.service';
 
 @Component({
-  selector: 'app-sidebar',
+  selector: 'admin-sidebar',
   standalone: true,
   imports: [],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  templateUrl: './admin-panel-sidebar.component.html',
+  styleUrl: './admin-panel-sidebar.component.scss',
 
 })
-export class SidebarComponent implements OnInit {
+export class AdminPanelSidebarComponent implements OnInit {
 
   public Imagefile: any;
   public name: string = "";
